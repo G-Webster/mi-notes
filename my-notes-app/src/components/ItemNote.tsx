@@ -33,16 +33,16 @@ const savedNotesList = localStorage.getItem('notes');
 
 
     //function to get date
-     const getFormattedDate = ():string => {
+//      const getFormattedDate = ():string => {
 
-        const dateNow = new Date();
-        const currentDay = dateNow.getDate();
-        const currentMonth = dateNow.toLocaleString('default', {month: 'short'})
-        const currentYear = dateNow.getFullYear();
-        const formattedDate = currentDay + ' / ' + currentMonth + ' / ' + currentYear;
+//         const dateNow = new Date();
+//         const currentDay = dateNow.getDate();
+//         const currentMonth = dateNow.toLocaleString('default', {month: 'short'})
+//         const currentYear = dateNow.getFullYear();
+//         const formattedDate = currentDay + ' / ' + currentMonth + ' / ' + currentYear;
         
-        return  formattedDate;
-   }
+//         return  formattedDate;
+//    }
    
 
     return(

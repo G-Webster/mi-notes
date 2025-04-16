@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NoteContent } from "./Types";
-import ItemNote from "./ItemNote";
+// import ItemNote from "./ItemNote";
 
 type AddNotePropts = {
     action: string;
@@ -20,7 +20,8 @@ export default function AddNote({action, note}: AddNotePropts) {
        text: note?.text || '',
        timestamp: new Date(),
     });
-    const [showNotes, setShowNotes] = useState<boolean>(false);
+
+    // const [showNotes, setShowNotes] = useState<boolean>(false);
 
     //get text input for note
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -48,7 +49,7 @@ export default function AddNote({action, note}: AddNotePropts) {
 
     //function to add notes to array
 
-    const submitNote = (e:React.FormEvent<HTMLFormElement>) => {
+    const submitNote = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         if(noteContent) {
@@ -96,9 +97,9 @@ export default function AddNote({action, note}: AddNotePropts) {
 
     }
 
-    const appendNoteToList = () => {
-          setShowNotes(true);
-    }
+    // const appendNoteToList = () => {
+    //       setShowNotes(true);
+    // }
 
 
 
@@ -110,21 +111,21 @@ export default function AddNote({action, note}: AddNotePropts) {
 
 
 
-     {showNotes &&  (<div>
+     {/* {showNotes &&  (<div>
        {notesList.map((note, index) => (
         <div className="mt-2" key={index}>
            <ItemNote note={note} />
         </div> 
        ))}
         </div>
-    )} 
+    )}  */}
     
 
 <div className="modal fade" 
-id={action === 'Add' ? 'addNoteModal' : `${'addNoteModal' + note.id }`}
+id={action === 'Add' ? 'addNoteModal' : `${'addNoteModal' + note?.id }`}
 data-bs-backdrop="static" 
 data-bs-keyboard="false" 
-tabIndex="-1" 
+tabIndex={-1} 
 aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
@@ -168,7 +169,7 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
              disabled={(noteTitle.trim()).length === 0 || (noteText.trim()).length === 0} 
              type="button" 
              className="btn btn-dark rounded-pill w-100" 
-             onClick={() => editNote(note.id)} 
+             onClick={() => editNote(note?.id || 0)} 
              data-bs-dismiss="modal" aria-label="Close">Edit</button>}
                  </div>
              </div>
