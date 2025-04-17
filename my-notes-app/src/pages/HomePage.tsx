@@ -1,21 +1,27 @@
 import AddNote from "../components/AddNote";
 import FetchItems from "../components/FetchItems";
 
-
 export default function HomePage() {
+
+   
 
     return(
         <>
     
         <div className="position-relative"> 
-            <div className="btn btn-light show-on-desk p-2 py-3 my-2 text-start d-flex" 
+            <div className="show-on-desk p-2">
+            <div className="btn border shadow-sm py-2 my-2 text-start d-flex" 
             data-bs-toggle="modal" data-bs-target="#addNoteModal"> 
-                <div className="fs-6 bg flex-grow-1">Write a new note</div>
+                <div className="fs-6 fw-medium flex-grow-1 text-body-secondary">Write a note...</div>
                 <div className="fs-6 bg">
-                <i className="fa-solid fa-pencil"></i>
+                <i className="fa-solid fa-pencil text-body-secondary"></i>
                 </div>
             </div>
+            </div>
 
+      <div className="show-on-desk">
+       <br /><br />
+       </div>
         <FetchItems /> 
 
         {/* mobile floating button  */}

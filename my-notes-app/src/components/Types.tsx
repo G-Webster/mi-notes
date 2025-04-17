@@ -5,3 +5,7 @@ export interface NoteContent {
     timestamp:unknown,
 }
 
+export interface ContextProps {
+    children: React.ReactNode;
+}
+

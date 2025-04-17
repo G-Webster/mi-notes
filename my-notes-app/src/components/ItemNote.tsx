@@ -8,7 +8,7 @@ type ItemNoteProps = {
 
 export default function ItemNote({ note} : ItemNoteProps ) {
 const savedNotesList = localStorage.getItem('notes');
-    const parsedData = JSON.parse(savedNotesList || '[]');
+    const parsedData = JSON.parse(savedNotesList || '[]') as NoteContent[];
     const [notesList, setNotesList] = useState<NoteContent[]>(parsedData || []);
     const [isDeleted, setIsDeleted] = useState<boolean>(false);
 
@@ -52,9 +52,9 @@ const savedNotesList = localStorage.getItem('notes');
                This note has been deleted
             </div>
         ) : (
-        <div style={{cursor: 'pointer'}} className="border rounded p-2 shadow-sm mb-2">
+        <div style={{cursor: 'pointer'}} className="">
             <div className="d-flex align-items-center">
-              <h4 className="flex-grow-1" data-bs-toggle="modal" data-bs-target={'#addNoteModal' + note.id}>{note.title}</h4>
+              <div className="flex-grow-1 fs-5 fw-medium" data-bs-toggle="modal" data-bs-target={'#addNoteModal' + note.id}>{note.title}</div>
 
               <div>
               <div className="dropstart">

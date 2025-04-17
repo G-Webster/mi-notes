@@ -3,8 +3,8 @@
 export default function Logo() {
 
     return(
-        <div>
+        <a  href="/" >
             <div className="fs-4 fw-bold">MiNotes</div>
-        </div>
+        </a>
     )
 }

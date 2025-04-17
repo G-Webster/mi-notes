@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NoteContent } from "./Types";
+import { RefreshNotesContext } from "../contexts/Contexts";
 // import ItemNote from "./ItemNote";
 
 type AddNotePropts = {
@@ -8,9 +9,9 @@ type AddNotePropts = {
 }
 
 export default function AddNote({action, note}: AddNotePropts) {
-  
+    const { refreshNotes }  = useContext(RefreshNotesContext);
     const savedNotesList = localStorage.getItem('notes');
-    const parsedData = JSON.parse(savedNotesList || '[]');
+    const parsedData = JSON.parse(savedNotesList || '[]') as NoteContent[];
     const [notesList, setNotesList] = useState<NoteContent[]>(parsedData || []);
     const [noteTitle, setNoteTitle] = useState<string>(note?.title || '');
     const [noteText, setNoteText] = useState<string>(note?.text || '');
@@ -67,7 +68,9 @@ export default function AddNote({action, note}: AddNotePropts) {
             //empty title and content
             setNoteTitle('');
             setNoteText('');
-            console.log('Note saved successfully')
+            console.log('Note saved successfully');
+            //refresh notes on home
+            refreshNotes();
             } 
             catch (error) {
                  console.error('Error', error)
@@ -75,10 +78,10 @@ export default function AddNote({action, note}: AddNotePropts) {
         }
     }
 
-    //edit post
+    //edit post: basically we are just copying the whole item and create a new one with modified values
     const editNote = (noteId: number) => {
         try {
-         //remove from the array list
+         //remove the item from the array list
         const filteredItems = notesList.filter((note) => note.id !== noteId );
          //spread out the array and create a new one
          const updatedList = [...filteredItems, noteContent];
@@ -88,6 +91,8 @@ export default function AddNote({action, note}: AddNotePropts) {
          console.log(notesList);
          console.log('A note has been successfully edited');
         // appendNoteToList();
+         //refresh notes on home
+         refreshNotes();
             
         } catch (error) {
             console.error('Error editing note: ', error)
